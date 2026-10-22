@@ -75,7 +75,6 @@ def executeProgram(programArr, inputArr):
         # Control commands
         if cmd == "goto":
             # ['goto', i, j]: if var_i is equal to 0, go to line j
-            # TODO: Implement goto.
             if variableList[ops[0]] == 0:
                 programCounter = ops[1]
                 continue
