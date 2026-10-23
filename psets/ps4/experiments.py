@@ -48,7 +48,7 @@ prog2 = [10,
     ['assign', fourteen_id, 14], 
     ['assign', output_len_id, 1], 
     ['assign', output_ptr_id, 0],
-    ['assign', result_id, 13],
+    ['assign', result_id, 14],
     ['assign', W_id, 2**32],
     ['read', counter_id, zero_id],
     ['goto', counter_id, 15],
@@ -79,7 +79,7 @@ def run_prog2 (n):
 
 # Plot both RAM programs' running times and save as `running_times.png`
 def graph ():
-    input_range = range(0, 15)
+    input_range = range(0, 16)
     prog1_time = [time_fun(run_prog1, i) for i in input_range]
     prog2_time = [time_fun(run_prog2, i) for i in input_range]
     plt.plot(input_range, prog1_time, label="Program 1")
