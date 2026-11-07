@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="660" viewBox="0 0 620 660" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="620" height="660" fill="#ffffff"/>
+  <text x="310" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#111">BFS on the 5×5 minefield (from a1)</text>
+  <text x="310" y="56" text-anchor="middle" font-size="13" fill="#666">number = distance (moves from a1) · arrows = predecessor edges on the shortest path to e5</text>
+
+  <!-- board geometry: cell 90px, origin x0=70, top y0=80; row5 at top -->
+  <!-- columns a..e -> col index 0..4 ; rows 1..5 bottom..top -->
+  <defs>
+    <marker id="path" markerWidth="12" markerHeight="12" refX="7" refY="3.2" orient="auto"><path d="M0,0 L9,3.2 L0,6.4 Z" fill="#1e8e3e"/></marker>
+  </defs>
+
+  <!-- cells -->
+  <!-- We draw 5 rows (top=row5) x 5 cols. Fill color by: mine=dark red, level tints, unreachable=gray -->
+  <!-- helper: x = 70 + col*90 ; y = 80 + (5-row)*90  (row 1..5) -->
+
+  <!-- ROW 5 (y=80) -->
+  <g>
+    <rect x="70"  y="80" width="90" height="90" fill="#7a1f1c"/><text x="115" y="130" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">a5 ⚫</text>
+    <rect x="160" y="80" width="90" height="90" fill="#eceff1"/><text x="205" y="118" text-anchor="middle" font-size="13" fill="#90a4ae">b5</text><text x="205" y="140" text-anchor="middle" font-size="12" fill="#b0bec5">∞</text>
+    <rect x="250" y="80" width="90" height="90" fill="#fde0dc"/><text x="295" y="116" text-anchor="middle" font-size="13" fill="#555">c5</text><text x="295" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#c5221f">2</text>
+    <rect x="340" y="80" width="90" height="90" fill="#7a1f1c"/><text x="385" y="130" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">d5 ⚫</text>
+    <rect x="430" y="80" width="90" height="90" fill="#c8e6c9" stroke="#1e8e3e" stroke-width="4"/><text x="475" y="116" text-anchor="middle" font-size="13" fill="#2e7d32" font-weight="700">e5 ★</text><text x="475" y="145" text-anchor="middle" font-size="20" font-weight="700" fill="#1b5e20">4</text>
+  </g>
+  <!-- ROW 4 (y=170) -->
+  <g>
+    <rect x="70"  y="170" width="90" height="90" fill="#fff3e0"/><text x="115" y="206" text-anchor="middle" font-size="13" fill="#555">a4</text><text x="115" y="235" text-anchor="middle" font-size="20" font-weight="700" fill="#ef6c00">3</text>
+    <rect x="160" y="170" width="90" height="90" fill="#7a1f1c"/><text x="205" y="220" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">b4 ⚫</text>
+    <rect x="250" y="170" width="90" height="90" fill="#fff3e0"/><text x="295" y="206" text-anchor="middle" font-size="13" fill="#555">c4</text><text x="295" y="235" text-anchor="middle" font-size="20" font-weight="700" fill="#ef6c00">3</text>
+    <rect x="340" y="170" width="90" height="90" fill="#7a1f1c"/><text x="385" y="220" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">d4 ⚫</text>
+    <rect x="430" y="170" width="90" height="90" fill="#fff3e0"/><text x="475" y="206" text-anchor="middle" font-size="13" fill="#555">e4</text><text x="475" y="235" text-anchor="middle" font-size="20" font-weight="700" fill="#ef6c00">3</text>
+  </g>
+  <!-- ROW 3 (y=260) -->
+  <g>
+    <rect x="70"  y="260" width="90" height="90" fill="#7a1f1c"/><text x="115" y="310" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">a3 ⚫</text>
+    <rect x="160" y="260" width="90" height="90" fill="#e3f2fd"/><text x="205" y="296" text-anchor="middle" font-size="13" fill="#555">b3</text><text x="205" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#1565c0">1</text>
+    <rect x="250" y="260" width="90" height="90" fill="#7a1f1c"/><text x="295" y="310" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">c3 ⚫</text>
+    <rect x="340" y="260" width="90" height="90" fill="#7a1f1c"/><text x="385" y="310" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">d3 ⚫</text>
+    <rect x="430" y="260" width="90" height="90" fill="#fde0dc"/><text x="475" y="296" text-anchor="middle" font-size="13" fill="#555">e3</text><text x="475" y="325" text-anchor="middle" font-size="20" font-weight="700" fill="#c5221f">2</text>
+  </g>
+  <!-- ROW 2 (y=350) -->
+  <g>
+    <rect x="70"  y="350" width="90" height="90" fill="#eceff1"/><text x="115" y="388" text-anchor="middle" font-size="13" fill="#90a4ae">a2</text><text x="115" y="410" text-anchor="middle" font-size="12" fill="#b0bec5">∞</text>
+    <rect x="160" y="350" width="90" height="90" fill="#ffe0b2"/><text x="205" y="386" text-anchor="middle" font-size="13" fill="#555">b2</text><text x="205" y="415" text-anchor="middle" font-size="20" font-weight="700" fill="#e65100">4</text>
+    <rect x="250" y="350" width="90" height="90" fill="#fde0dc"/><text x="295" y="386" text-anchor="middle" font-size="13" fill="#555">c2</text><text x="295" y="415" text-anchor="middle" font-size="20" font-weight="700" fill="#1565c0">1</text>
+    <rect x="340" y="350" width="90" height="90" fill="#fde0dc"/><text x="385" y="386" text-anchor="middle" font-size="13" fill="#555">d2</text><text x="385" y="415" text-anchor="middle" font-size="20" font-weight="700" fill="#c5221f">2</text>
+    <rect x="430" y="350" width="90" height="90" fill="#eceff1"/><text x="475" y="388" text-anchor="middle" font-size="13" fill="#90a4ae">e2</text><text x="475" y="410" text-anchor="middle" font-size="12" fill="#b0bec5">∞</text>
+  </g>
+  <!-- ROW 1 (y=440) -->
+  <g>
+    <rect x="70"  y="440" width="90" height="90" fill="#bbdefb" stroke="#1565c0" stroke-width="4"/><text x="115" y="476" text-anchor="middle" font-size="13" fill="#0d47a1" font-weight="700">a1 ♞</text><text x="115" y="505" text-anchor="middle" font-size="20" font-weight="700" fill="#0d47a1">0</text>
+    <rect x="160" y="440" width="90" height="90" fill="#7a1f1c"/><text x="205" y="490" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">b1 ⚫</text>
+    <rect x="250" y="440" width="90" height="90" fill="#7a1f1c"/><text x="295" y="490" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">c1 ⚫</text>
+    <rect x="340" y="440" width="90" height="90" fill="#fff3e0"/><text x="385" y="476" text-anchor="middle" font-size="13" fill="#555">d1</text><text x="385" y="505" text-anchor="middle" font-size="20" font-weight="700" fill="#ef6c00">3</text>
+    <rect x="430" y="440" width="90" height="90" fill="#7a1f1c"/><text x="475" y="490" text-anchor="middle" font-size="15" fill="#fff" font-weight="700">e1 ⚫</text>
+  </g>
+
+  <!-- grid outline -->
+  <rect x="70" y="80" width="450" height="450" fill="none" stroke="#263238" stroke-width="2.5"/>
+
+  <!-- shortest path arrows: a1(115,485) -> b3(205,305) -> d2(385,395) -> c4(295,215) -> e5(475,125) -->
+  <g stroke="#1e8e3e" stroke-width="4.5" fill="none" marker-end="url(#path)" opacity="0.9">
+    <line x1="115" y1="485" x2="200" y2="312"/>
+    <line x1="205" y1="305" x2="378" y2="392"/>
+    <line x1="385" y1="395" x2="300" y2="222"/>
+    <line x1="295" y1="215" x2="468" y2="132"/>
+  </g>
+
+  <!-- legend -->
+  <g font-size="12.5" fill="#444">
+    <rect x="70" y="560" width="20" height="20" fill="#bbdefb" stroke="#1565c0" stroke-width="2"/><text x="98" y="575">start (0)</text>
+    <rect x="175" y="560" width="20" height="20" fill="#fde0dc"/><text x="203" y="575">BFS level</text>
+    <rect x="290" y="560" width="20" height="20" fill="#7a1f1c"/><text x="318" y="575">landmine</text>
+    <rect x="400" y="560" width="20" height="20" fill="#eceff1"/><text x="428" y="575">unreachable (∞)</text>
+    <rect x="70" y="590" width="20" height="20" fill="#c8e6c9" stroke="#1e8e3e" stroke-width="2"/><text x="98" y="605">goal corner e5 (4)</text>
+    <line x1="290" y1="600" x2="330" y2="600" stroke="#1e8e3e" stroke-width="4" marker-end="url(#path)"/><text x="340" y="605">shortest path (4 moves)</text>
+  </g>
+  <text x="70" y="640" font-size="12.5" fill="#777">Path: a1 → b3 → d2 → c4 → e5.  Corners e1 &amp; a5 are mined (unreachable); e5 is the only reachable goal corner.</text>
+</svg>

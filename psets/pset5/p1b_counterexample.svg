@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="760" height="470" fill="#ffffff"/>
+  <defs>
+    <marker id="g" markerWidth="11" markerHeight="11" refX="8.5" refY="3.2" orient="auto"><path d="M0,0 L9,3.2 L0,6.4 Z" fill="#9aa0a6"/></marker>
+    <marker id="gr" markerWidth="13" markerHeight="13" refX="8.5" refY="3.4" orient="auto"><path d="M0,0 L10,3.4 L0,6.8 Z" fill="#1e8e3e"/></marker>
+  </defs>
+
+  <text x="380" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#111">Ω(n) time for a 2-edge path</text>
+  <text x="380" y="52" text-anchor="middle" font-size="13.5" fill="#666">s reaches every middle vertex (so all are in F₁), but only m has an edge to t</text>
+
+  <!-- frontier F1 bracket background -->
+  <rect x="300" y="72" width="120" height="340" rx="12" fill="#f1f3f4" stroke="#dadce0" stroke-width="1"/>
+  <text x="360" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#5f6368">F₁  (1 step from s)</text>
+
+  <!-- edges s -> w_j -->
+  <g stroke="#9aa0a6" stroke-width="2">
+    <line x1="120" y1="235" x2="332" y2="125" marker-end="url(#g)"/>
+    <line x1="120" y1="235" x2="332" y2="180" marker-end="url(#g)"/>
+    <line x1="120" y1="235" x2="332" y2="235" marker-end="url(#g)"/>
+    <line x1="120" y1="235" x2="332" y2="370" marker-end="url(#g)"/>
+  </g>
+
+  <!-- highlighted edge w_{n-2} -> t -->
+  <line x1="388" y1="370" x2="628" y2="250" stroke="#1e8e3e" stroke-width="3.5" marker-end="url(#gr)"/>
+  <text x="520" y="300" text-anchor="middle" font-size="13" font-weight="700" fill="#1e8e3e">the only edge into t</text>
+
+  <!-- s -->
+  <circle cx="90" cy="235" r="28" fill="#111"/><text x="90" y="242" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">s</text>
+  <text x="90" y="285" text-anchor="middle" font-size="12" fill="#888">depot (0 steps)</text>
+
+  <!-- w nodes -->
+  <g font-size="13.5" font-weight="600">
+    <circle cx="360" cy="120" r="22" fill="#fff" stroke="#9aa0a6" stroke-width="2"/><text x="360" y="125" text-anchor="middle" fill="#444">w₁</text>
+    <circle cx="360" cy="177" r="22" fill="#fff" stroke="#9aa0a6" stroke-width="2"/><text x="360" y="182" text-anchor="middle" fill="#444">w₂</text>
+    <circle cx="360" cy="234" r="22" fill="#fff" stroke="#9aa0a6" stroke-width="2"/><text x="360" y="239" text-anchor="middle" fill="#444">w₃</text>
+    <text x="360" y="300" text-anchor="middle" font-size="22" fill="#9aa0a6">⋮</text>
+    <circle cx="360" cy="370" r="24" fill="#d2e3fc" stroke="#1a73e8" stroke-width="3"/><text x="360" y="369" text-anchor="middle" font-size="16" font-weight="700" fill="#1a3d8f">m</text><text x="360" y="382" text-anchor="middle" font-size="9" fill="#1a3d8f">(found last)</text>
+  </g>
+  <text x="235" y="150" text-anchor="middle" font-size="11.5" fill="#999">dead ends</text>
+
+  <!-- t -->
+  <circle cx="660" cy="235" r="28" fill="#fce8e6" stroke="#c5221f" stroke-width="3"/><text x="660" y="242" text-anchor="middle" font-size="20" font-weight="700" fill="#8a1a17">t</text>
+  <text x="660" y="285" text-anchor="middle" font-size="12" fill="#888">target (2 steps)</text>
+
+  <!-- bottom explanation -->
+  <rect x="60" y="420" width="640" height="40" rx="9" fill="#fef7e0" stroke="#f9ab00" stroke-width="1.2"/>
+  <text x="380" y="445" text-anchor="middle" font-size="13.5" fill="#7a5900">Reconstructing t's path scans w₁, w₂, … (all dead ends) before reaching m: Ω(n) work for the 2-edge path s → m → t.</text>
+</svg>
